@@ -1,16 +1,15 @@
 package com.example.tugasday9.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.tugasday9.R;
 import com.example.tugasday9.api.ApiClient;
 import com.example.tugasday9.api.ApiInterface;
 import com.example.tugasday9.databinding.ActivityRegisterBinding;
@@ -26,12 +25,19 @@ public class RegisterActivity extends AppCompatActivity {
     String usernameRegister, passwordRegister, nameRegister;
     ApiInterface apiInterface;
 
+    ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#074173"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         binding.btnRegister.setOnClickListener(v -> {
             usernameRegister = binding.etUsernameRegister.getText().toString().trim();
@@ -56,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         Call<Register> registerCall = apiInterface.registerResponse(username,password, name);
         registerCall.enqueue(new Callback<Register>() {
             @Override
-            public void onResponse(Call<Register> call, Response<Register> response) {
+            public void onResponse(@NonNull Call<Register> call, @NonNull Response<Register> response) {
                 if(response.body() != null && response.isSuccessful() && response.body().isStatus()){
                     Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -68,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Register> call, Throwable t) {
+            public void onFailure(@NonNull Call<Register> call, @NonNull Throwable t) {
                 Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);

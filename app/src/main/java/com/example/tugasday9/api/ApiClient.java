@@ -11,8 +11,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://10.0.30.30/data_user/";
+    //private static final String BASE_URL = "http://10.0.30.30/data_user/";
 
+    private static final String BASE_URL = "https://lazykoding.com/logreg/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {

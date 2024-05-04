@@ -1,18 +1,16 @@
 package com.example.tugasday9.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.tugasday9.R;
 import com.example.tugasday9.api.ApiClient;
 import com.example.tugasday9.api.ApiInterface;
 import com.example.tugasday9.databinding.ActivityLoginBinding;
@@ -30,12 +28,19 @@ public class LoginActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     SessionManager sessionManager;
 
+    ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#074173"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         binding.btnLogin.setOnClickListener(v -> {
             usernameLogin = binding.etUsernameLogin.getText().toString().trim();
@@ -56,10 +61,8 @@ public class LoginActivity extends AppCompatActivity {
             int selectionStart = binding.etPasswordLogin.getSelectionStart();
             int selectionEnd = binding.etPasswordLogin.getSelectionEnd();
             if (binding.toggleButtonShowPassword.isChecked()) {
-                // Show password
                 binding.etPasswordLogin.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             } else {
-                // Hide password
                 binding.etPasswordLogin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
             binding.etPasswordLogin.setSelection(selectionStart, selectionEnd);
@@ -73,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginCall.enqueue(new Callback<Login>() {
             @Override
-            public void onResponse(Call<Login> call, Response<Login> response) {
+            public void onResponse(@NonNull Call<Login> call, @NonNull Response<Login> response) {
                 if(response.body() != null && response.isSuccessful() && response.body().isStatus()){
 
                     sessionManager = new SessionManager(LoginActivity.this);
@@ -90,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Login> call, Throwable t) {
+            public void onFailure(@NonNull Call<Login> call, @NonNull Throwable t) {
                 Toast.makeText(LoginActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

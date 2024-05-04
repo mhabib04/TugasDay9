@@ -6,32 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#A3D8FF"
+    android:gravity="center"
     tools:context=".ui.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="Welcome !"/>
 
     <TextView
         android:id="@+id/etMainUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="20dp"
         android:textSize="25sp"
-        android:text="@string/username"
-        android:layout_gravity="center"/>
+        android:text="@string/username"/>
 
     <TextView
         android:id="@+id/etMainName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textSize="25sp"
-        android:text="@string/name"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text="@string/logout" />
+        android:textSize="25sp"
+        android:text="@string/name"/>
 
 </LinearLayout>

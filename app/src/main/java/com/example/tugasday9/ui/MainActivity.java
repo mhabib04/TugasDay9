@@ -2,16 +2,15 @@ package com.example.tugasday9.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tugasday9.R;
 import com.example.tugasday9.databinding.ActivityMainBinding;
@@ -24,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     String usernameMain, nameMain;
 
+    ActionBar actionBar;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#074173"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         sessionManager = new SessionManager(MainActivity.this);
         if(!sessionManager.isLoggedIn()){
@@ -43,10 +49,6 @@ public class MainActivity extends AppCompatActivity {
         binding.etMainUsername.setText("Username : " + usernameMain);
         binding.etMainName.setText("Name : " + nameMain);
 
-        binding.btnLogout.setOnClickListener(v -> {
-            sessionManager.logoutSession();
-            moveToLogin();
-        });
     }
 
     private void moveToLogin() {
