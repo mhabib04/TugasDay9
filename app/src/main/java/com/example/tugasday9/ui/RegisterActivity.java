@@ -1,6 +1,8 @@
 package com.example.tugasday9.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,18 +11,69 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tugasday9.R;
+import com.example.tugasday9.api.ApiClient;
+import com.example.tugasday9.api.ApiInterface;
+import com.example.tugasday9.databinding.ActivityRegisterBinding;
+import com.example.tugasday9.model.register.Register;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    private ActivityRegisterBinding binding;
+    String usernameRegister, passwordRegister, nameRegister;
+    ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.btnRegister.setOnClickListener(v -> {
+            usernameRegister = binding.etUsernameRegister.getText().toString().trim();
+            passwordRegister = binding.etPasswordRegister.getText().toString().trim();
+            nameRegister = binding.etNameRegister.getText().toString().trim();
+            if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty()){
+                Toast.makeText(RegisterActivity.this, "Please fill in all fields completely", Toast.LENGTH_SHORT).show();
+            } else {
+                register(usernameRegister, passwordRegister, nameRegister);
+            }
+        });
+
+        binding.tvAlreadyHaveAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    private void register(String username, String password, String name) {
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<Register> registerCall = apiInterface.registerResponse(username,password, name);
+        registerCall.enqueue(new Callback<Register>() {
+            @Override
+            public void onResponse(Call<Register> call, Response<Register> response) {
+                if(response.body() != null && response.isSuccessful() && response.body().isStatus()){
+                    Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Register> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();*/
+            }
         });
     }
 }
