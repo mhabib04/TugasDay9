@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Tugas Day 9</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="already_have_account_login_here">Already Have Account? Login Here</string>
+    <string name="logout">Logout</string>
 </resources>

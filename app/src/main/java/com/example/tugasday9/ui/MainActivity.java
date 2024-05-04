@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     String usernameMain, nameMain;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         nameMain = sessionManager.getUserDetail().get(SessionManager.NAME);
 
         binding.etMainUsername.setText("Username : " + usernameMain);
-        binding.etMainName.setText("Name : " +nameMain);
+        binding.etMainName.setText("Name : " + nameMain);
 
         binding.btnLogout.setOnClickListener(v -> {
             sessionManager.logoutSession();
