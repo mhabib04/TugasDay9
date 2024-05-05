@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#074173"));
+                = new ColorDrawable(Color.parseColor("#03AED2"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         binding.btnLogin.setOnClickListener(v -> {

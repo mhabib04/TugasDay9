@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#074173"));
+                = new ColorDrawable(Color.parseColor("#03AED2"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         sessionManager = new SessionManager(MainActivity.this);
