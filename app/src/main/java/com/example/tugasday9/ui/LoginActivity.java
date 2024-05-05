@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     String usernameLogin, passwordLogin;
     ApiInterface apiInterface;
     SessionManager sessionManager;
-
     ActionBar actionBar;
 
     @Override

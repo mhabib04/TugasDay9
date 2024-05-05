@@ -24,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
     String usernameRegister, passwordRegister, nameRegister;
     ApiInterface apiInterface;
-
     ActionBar actionBar;
 
     @Override

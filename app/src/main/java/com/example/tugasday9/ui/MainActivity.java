@@ -18,11 +18,8 @@ import com.example.tugasday9.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
-
     private ActivityMainBinding binding;
-
     String usernameMain, nameMain;
-
     ActionBar actionBar;
 
     @SuppressLint("SetTextI18n")
