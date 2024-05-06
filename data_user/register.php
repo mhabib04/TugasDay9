@@ -19,7 +19,7 @@ if($_POST){
     if($userQuery->rowCount() != 0){
         // Beri Response
         $response['status'] = false;
-        $response['message'] = 'Akun "' . $username . '" sudah digunakan';
+        $response['message'] = 'Account "' . $username . '" is already in use';
     } else {
         $insertAccount = 'INSERT INTO user (username, password, name) values (:username, :password, :name)';
         $statement = $connection->prepare($insertAccount);
@@ -34,7 +34,7 @@ if($_POST){
 
             //Beri response
             $response['status'] = true;
-            $response['message'] = 'Akun "' . $username . '" berhasil didaftar';
+            $response['message'] = 'Account "' . $username . '" was successfully registered';
             $response['data'] = [
                 'username' => $username,
                 'name' => $name

@@ -17,7 +17,7 @@ if($_POST){
 
     if($userQuery->rowCount() == 0){
         $response['status'] = false;
-        $response['message'] = "Username Tidak Terdaftar";
+        $response['message'] = "Username Not Registered";
     } else {
         // Ambil password di db
 
@@ -25,7 +25,7 @@ if($_POST){
 
         if(strcmp(md5($password),$passwordDB) === 0){
             $response['status'] = true;
-            $response['message'] = "Login Berhasil";
+            $response['message'] = "Login Successfully";
             $response['data'] = [
                 'user_id' => $query['id'],
                 'username' => $query['username'],
@@ -33,7 +33,7 @@ if($_POST){
             ];
         } else {
             $response['status'] = false;
-            $response['message'] = "Password anda salah";
+            $response['message'] = "Your password is wrong";
         }
     }
 
