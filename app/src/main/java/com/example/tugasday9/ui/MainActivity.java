@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         usernameMain = sessionManager.getUserDetail().get(SessionManager.USERNAME);
         nameMain = sessionManager.getUserDetail().get(SessionManager.NAME);
 
-        binding.etMainUsername.setText("Username : " + usernameMain);
+        binding.etMainUsername.setText("Username : @" + usernameMain);
         binding.etMainName.setText("Name : " + nameMain);
 
     }

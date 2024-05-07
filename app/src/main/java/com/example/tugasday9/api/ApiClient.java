@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     //Pakai IP localhost device dan localhost harus aktif
-    private static final String BASE_URL = "http://10.0.30.30/data_user/";
+    private static final String BASE_URL = "http://192.168.202.82/data_user/";
 
     private static Retrofit retrofit;
 
