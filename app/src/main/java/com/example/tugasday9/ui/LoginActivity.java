@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginData loginData = response.body().getLoginData();
                     sessionManager.createLoginSession(loginData);
 
-                     Toast.makeText(LoginActivity.this, response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
