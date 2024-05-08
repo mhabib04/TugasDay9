@@ -6,7 +6,7 @@ try{
     //Config
     $host = "localhost";
     $username = "bibskymy_user";
-    $password = "mhabib1804";
+    $password = "mhabib180404";
     $dbname = "bibskymy_data_user";
 
     //Connect
@@ -14,11 +14,11 @@ try{
     $connection = new PDO($database, $username, $password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if($connection){
-        echo "Koneksi Berhasil";
-    } else {
-        echo "Gagal gan";
-    }
+    // if($connection){
+    //     echo "Koneksi Berhasil";
+    // } else {
+    //     echo "Gagal gan";
+    // }
 
 
 } catch (PDOException $e){
