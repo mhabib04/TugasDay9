@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
+    //Bikin database dan hosting domain nya
     private static final String BASE_URL = "https://bibsky.my.id/data_user/";
 
     private static Retrofit retrofit;
